@@ -88,7 +88,6 @@ Dice::Dice(float end_x, float end_y, float size, double anim_duration_ms)
     : start_x(end_x), start_y(end_y), end_x(end_x), end_y(end_y), size(size), anim_duration_ms(anim_duration_ms), value(1), rolling(false)
 {
     reset();
-
 }
 
 void Dice::drawCube()
@@ -96,7 +95,7 @@ void Dice::drawCube()
     glPushMatrix();
     glTranslatef(x + size / 2, y + size / 2, size / 2);
 
-    glRotatef(face_rotations[value - 1][0],
+    glRotatef(-face_rotations[value - 1][0],
               face_rotations[value - 1][1],
               face_rotations[value - 1][2],
               face_rotations[value - 1][3]);
@@ -139,7 +138,7 @@ void Dice::roll()
     y = start_y;
     angle_x = 0.0f;
     angle_y = 0.0f;
-    value = rand() % 6 + 1;
+    value = (rand() % 6) + 1;
 
     start_x = rand() % (int)(BOARD_WIDTH - size);
     start_y = rand() % (int)(BOARD_HEIGHT - size);
@@ -163,12 +162,14 @@ void Dice::updateAnimation(double now_ms)
 
 void Dice::draw()
 {
+    glEnable(GL_DEPTH_TEST);
     float timeNow = glutGet(GLUT_ELAPSED_TIME);
     if (rolling)
     {
         updateAnimation(timeNow);
     }
     drawCube();
+    glDisable(GL_DEPTH_TEST);
 }
 
 int Dice::getValue() const { return value; }

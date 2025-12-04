@@ -11,31 +11,17 @@ using std::vector;
 #include <Gl/glut.h>
 #endif
 
-#include "constants.h"
-#include "dice.h"
-#include "board.h"
 
-Dice dice1(BOARD_WIDTH / 2 - DICE_SIZE - 0.5,
-           BOARD_HEIGHT / 2 - DICE_SIZE / 2,
-           DICE_SIZE,
-           DICE_ANIM_DURATION_MS);
-Dice dice2(BOARD_WIDTH / 2 + 0.5,
-           BOARD_HEIGHT / 2 - DICE_SIZE / 2,
-           DICE_SIZE,
-           DICE_ANIM_DURATION_MS);
+#include "constants.h"
+#include "game_manager.h"
+
+GameManager gameManager;
 
 void draw(void)
 {
     double now_ms = glutGet(GLUT_ELAPSED_TIME);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glDisable(GL_DEPTH_TEST);
-    draw_board();
-
-    glEnable(GL_DEPTH_TEST);
-    dice1.draw();
-    dice2.draw();
-    glDisable(GL_DEPTH_TEST);
-
+    gameManager.draw();
     glFlush();
     glutPostRedisplay();
 }
@@ -44,15 +30,14 @@ void keyboard(unsigned char key, int x, int y)
 {
     if (key == 'r' || key == 'R')
     {
-        dice1.roll();
-        dice2.roll();
+        gameManager.rollDice();
     }
 }
 
 void init()
 {
     glClearColor(0.0, 0.0, 0.0, 0.0);
-    glMatrixMode(GL_PROJECTION);
+    glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glOrtho(0.0, BOARD_WIDTH, 0.0, BOARD_HEIGHT, -40.0, 40.0);
 }

@@ -20,6 +20,7 @@ extern const float BOARD_HEIGHT;
 extern const float CENTER_BOX_WIDTH;
 extern const float CENTER_BOX_HEIGHT;
 extern const int NUM_CELLS;
+extern const int NUM_PLAYABLE_CELLS;
 extern const int WINDOW_WIDTH;
 extern const int WINDOW_HEIGHT;
 
@@ -50,3 +51,7 @@ extern const int DICE_X_NUMBER_FLIPS;
 extern const int DICE_Y_NUMBER_FLIPS;
 extern const float DICE_DOT_RADIUS;
 extern const int DICE_DOT_NO_OF_SEGMENTS;
+
+// Player constants
+extern const float PLAYER_SIZE;
+extern const double PLAYER_STEP_DURATION_MS;
