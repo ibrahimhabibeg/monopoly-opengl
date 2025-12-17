@@ -13,9 +13,9 @@
 #include "utils.h"
 #include "constants.h"
 
-Player::Player(std::tuple<float, float, float> color, float size, double step_duration_ms)
+Player::Player(std::tuple<float, float, float> color, float size, double step_duration_ms, float in_cell_x_shift)
     : color(color), size(size), step_duration_ms(step_duration_ms), current_cell(0),
-    moving(false)
+moving(false), in_cell_x_shift(in_cell_x_shift)
 {
     auto t = get_cell_center(current_cell);
     x = std::get<0>(t);
@@ -32,7 +32,7 @@ void Player::draw()
     float b = std::get<2>(color);
 
     glColor3f(r, g, b);
-    draw_rectangle(x - size / 2.0f, y - size / 2.0f, size, size);
+    draw_rectangle(in_cell_x_shift + x - size / 2.0f, y - size / 2.0f, size, size);
 }
 
 void Player::startMove(int steps)

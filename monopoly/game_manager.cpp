@@ -15,8 +15,8 @@ GameManager::GameManager()
         awaiting_player_finish_animation(false),
         current_player_index(0)
 {
-    players.push_back(Player(std::make_tuple(1.0f, 0.0f, 0.0f), PLAYER_SIZE, PLAYER_STEP_DURATION_MS));
-    players.push_back(Player(std::make_tuple(0.0f, 0.0f, 1.0f), PLAYER_SIZE, PLAYER_STEP_DURATION_MS));
+    players.push_back(Player(std::make_tuple(1.0f, 0.0f, 0.0f), PLAYER_SIZE, PLAYER_STEP_DURATION_MS, -0.75f));
+    players.push_back(Player(std::make_tuple(0.0f, 0.0f, 1.0f), PLAYER_SIZE, PLAYER_STEP_DURATION_MS, 0.75f));
 }
 
 void GameManager::draw()

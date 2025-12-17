@@ -19,7 +19,7 @@ GameManager gameManager;
 
 void draw(void)
 {
-    double now_ms = glutGet(GLUT_ELAPSED_TIME);
+//    double now_ms = glutGet(GLUT_ELAPSED_TIME);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     gameManager.draw();
     glFlush();
@@ -43,7 +43,7 @@ void init()
 }
 int main(int argc, char **argv)
 {
-    srand(42);
+//    srand(42);
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
